@@ -20,6 +20,8 @@ public class MyLinkedList<T> implements MyList<T> {
 
 	@Override
 	public void removeFromBeginning() {
+		//Check to make sure length is less than 2
+		
 		head = head.getNext();
 		myLength--;
 	}
@@ -30,32 +32,51 @@ public class MyLinkedList<T> implements MyList<T> {
 			head = new Node(null, data);
 			tail = head;
 		}
-		
-		Node n = new Node();
-		n.setData(data);
-		tail.setNext(n);
-		tail = tail.getNext();
+		else {
+			Node n = new Node();
+			n.setData(data);
+			tail.setNext(n);
+			tail = tail.getNext();
+		}
 		
 		myLength++;
 	}
 
 	@Override
 	public void removeFromEnd() {
-		Node thisNode = head;
+		//Check to make sure if length is less than 2
 		
-		while (thisNode.getNext() != tail) {
-			thisNode = thisNode.getNext();
+		if (myLength > 2) {
+			Node thisNode = getNode(myLength - 1);
+			thisNode.setNext(null);
+			tail = thisNode;
+			myLength--;
+		}
+		else if (myLength == 2) {
+			tail = head;
+			head.setNext(null);
+			myLength--;
+
+		}
+		else if (myLength == 1) {
+			head.setData(null);
+			myLength--;
 		}
 		
-		tail = thisNode.getNext();
-		myLength--;
+	
+		
+		int z = 0;
+		
 	}
 	
 	@Override
 	public void insertAt(int index, T elt) {
 		Node thisNode = getNode(index);
 		Node nextNode = thisNode.getNext();
-		thisNode.setNext(new Node(nextNode,elt));
+		
+		Node n = new Node(nextNode, elt);
+		
+		thisNode.setNext(n);
 		
 		myLength++;
 	}
@@ -66,7 +87,6 @@ public class MyLinkedList<T> implements MyList<T> {
 		thisNode.setNext(thisNode.getNext().getNext());
 		
 		myLength--;
-		
 	}
 	
 	@Override
@@ -81,7 +101,7 @@ public class MyLinkedList<T> implements MyList<T> {
 	
 	private Node getNode(int index) {
 		Node thisNode = head;
-		for (int i = 0; i < index; i++) {
+		for (int i = 0; i < (index - 1); i++) {
 			thisNode = thisNode.getNext();
 		}
 		return thisNode;
@@ -89,18 +109,17 @@ public class MyLinkedList<T> implements MyList<T> {
 	
 	public String toString() {
 		StringBuilder sb = new StringBuilder("\\|");
+		
 		//follow the links between the nodes until it reaches the end
 		Node node = head;
-		
-		int counter = 0;
-		
+						
 		do {
-			sb.append(node);
+			sb.append(node.toString());
 			node = node.getNext();
 		} while (node != null);
 		
 		sb.append("|/");
-		
+				
 		return sb.toString();
 		
 	}

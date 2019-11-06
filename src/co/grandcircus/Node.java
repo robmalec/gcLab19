@@ -7,6 +7,7 @@ public class Node<T> {
 	public Node() {}
 	public Node(Node next, T data) {
 		this.data = data;
+		this.next = next;
 	}
 	public Node getNext() {
 		return next;
