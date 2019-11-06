@@ -1,5 +1,7 @@
 package co.grandcircus;
 
+import java.util.HashMap;
+
 public class MyListApp {
 
 	public static void main(String[] args) {
@@ -94,6 +96,38 @@ public class MyListApp {
 		
 		System.out.println(lList);
 
+	}
+	
+	/*
+	 * Both of these are Big-O of n because they're iterating linearly through a list of n elements, going over each one exactly once.
+	 */
+	
+	public static HashMap<Integer,Integer> mapCountNumFrequency(int[] arr){
+		HashMap<Integer, Integer> map = new HashMap<>();
+		
+		int temp = 0;
+		for (int i : arr) {
+			if (map.containsKey(i)) {
+				temp = map.get(i) + 1;
+				map.put(i, temp);
+			}
+			else {
+				map.put(i,0);
+			}
+		}
+		
+		return map;
+	}
+	
+	public static int[] arrCountNumFrequency(int[] arr) {
+		int[] rArr = new int[11];
+		for (int i=0; i < rArr.length; i++) {
+			rArr[i] = 0;
+		}
+		for (int i : arr) {
+			rArr[i]++;	
+		}
+		return rArr;
 	}
 
 }
