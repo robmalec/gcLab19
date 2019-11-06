@@ -70,14 +70,14 @@ public class MyArrayList<T> implements MyList<T> {
 	
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder("<");
+		StringBuilder sb = new StringBuilder("[");
 		for (int i = 0; i < myLength; i++) {
 			sb.append(arr[i]);
 			if (i != (myLength - 1)) {
 				sb.append(", ");
 			}
 		}
-		sb.append(">");
+		sb.append("]");
 		return sb.toString();
 	}
 

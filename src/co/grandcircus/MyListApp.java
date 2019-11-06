@@ -21,6 +21,19 @@ public class MyListApp {
 		aList.removeAt(1);
 
 		System.out.println(aList);
+		
+		aList.removeFromBeginning();
+		aList.removeFromBeginning();
+		
+		System.out.println(aList);
+		
+		aList.removeFromEnd();
+		aList.removeFromEnd();
+		aList.removeFromEnd();
+		aList.removeFromEnd();
+		aList.removeFromEnd();
+		
+		System.out.println(aList);
 
 		System.out.println("linkedLists:");
 
@@ -59,6 +72,26 @@ public class MyListApp {
 
 		lList.removeFromEnd();
 
+		System.out.println(lList);
+
+		lList.addAtEnd("50");
+
+		System.out.println(lList);
+
+		lList.addAtEnd("50");
+
+		System.out.println(lList);
+
+		lList.removeFromBeginning();
+
+		System.out.println(lList);
+
+		lList.removeFromBeginning();
+
+		System.out.println(lList);
+		
+		lList.removeFromBeginning();
+		
 		System.out.println(lList);
 
 	}

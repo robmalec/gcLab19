@@ -22,7 +22,15 @@ public class MyLinkedList<T> implements MyList<T> {
 	public void removeFromBeginning() {
 		//Check to make sure length is less than 2
 		
-		head = head.getNext();
+		if (myLength > 2) {
+			head = head.getNext();
+		}
+		else if (myLength == 2) {
+			head = tail;
+		}
+		else if (myLength == 1) {
+			head = null;
+		}
 		myLength--;
 	}
 
@@ -46,27 +54,20 @@ public class MyLinkedList<T> implements MyList<T> {
 	public void removeFromEnd() {
 		//Check to make sure if length is less than 2
 		
-		if (myLength > 2) {
+		if (myLength > 2) {	
 			Node thisNode = getNode(myLength - 1);
 			thisNode.setNext(null);
 			tail = thisNode;
-			myLength--;
 		}
 		else if (myLength == 2) {
 			tail = head;
 			head.setNext(null);
-			myLength--;
 
 		}
 		else if (myLength == 1) {
 			head.setData(null);
-			myLength--;
 		}
-		
-	
-		
-		int z = 0;
-		
+		myLength--;
 	}
 	
 	@Override
@@ -108,17 +109,19 @@ public class MyLinkedList<T> implements MyList<T> {
 	}
 	
 	public String toString() {
-		StringBuilder sb = new StringBuilder("\\|");
+		StringBuilder sb = new StringBuilder("[");
 		
-		//follow the links between the nodes until it reaches the end
-		Node node = head;
-						
-		do {
-			sb.append(node.toString());
-			node = node.getNext();
-		} while (node != null);
+		if (myLength > 0) {
+			//follow the links between the nodes until it reaches the end
+			Node node = head;
+							
+			do {
+				sb.append(node.toString());
+				node = node.getNext();
+			} while (node != null);
+		}
 		
-		sb.append("|/");
+		sb.append("]");
 				
 		return sb.toString();
 		
